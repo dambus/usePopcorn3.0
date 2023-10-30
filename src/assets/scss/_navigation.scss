@@ -1,0 +1,23 @@
+.navigation {
+  width: 100%;
+  height: 4rem;
+  padding: 0 2rem;
+  background-color: $color-blue;
+  @include md {
+    height: 6rem;
+  }
+
+  .inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    .logo {
+      display: flex;
+      border: 2px solid rgba(tint($color-blue, 10%), 0.33);
+      padding: 6px 8px;
+      border-radius: 50%;
+      box-shadow: 0 0 1.25rem 0.75rem rgba(tint($color-blue, 20%), 0.5);
+    }
+  }
+}

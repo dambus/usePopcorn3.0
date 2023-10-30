@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    #333333,
+    #404046,
+    #4d4d5b,
+    #5a5b70,
+    #666a86
+  );
+}
+
+// Breakpoints
+$bic-lt: 1660px;
+$mac: 1440px;
+$ls: 1366px;
+$sc: 1280px;
+$lg: 1199px;
+$md: 991px;
+$sm: 767px;
+$mb: 480px;
+$ip: 420px;
+$xs: 350px;
+
+// small devices
+@mixin xs {
+  @media (min-width: $xs) {
+    @content;
+  }
+}
+
+@mixin iphone {
+  @media (min-width: $ip) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: $sm) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin md {
+  @media (min-width: $md) {
+    @content;
+  }
+}
+
+// Large devices
+@mixin lg {
+  @media (min-width: $lg) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xl {
+  @media (min-width: $ls) {
+    @content;
+  }
+}
+
+// Custom devices
+@mixin rwd($screen) {
+  @media (min-width: $screen) {
+    @content;
+  }
+}
+
+// img {
+//   max-width: 100%;
+//   object-fit: cover;
+//   object-position: center;
+// }
+
+@mixin test {
+  border: 1px solid red;
+}
+
+.test {
+  @include test;
+}
+
+@mixin make-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrapper {
+  width: 100%;
+  // max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.main-window {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  @include md {
+    min-height: calc(100vh - 6rem);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    gap: 2rem;
+    align-items: center;
+    justify-content: start;
+  }
+}
+
+.movie-list {
+  @include test;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}

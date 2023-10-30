@@ -1,8 +1,11 @@
 function Movie({ movie }) {
   return (
-    <figure>
-      <h1>{movie.Title}</h1>
-      <p>{movie.Year}</p>
+    <figure className="single-movie">
+      <img src={movie.Poster} alt={`poster of ${movie.Name}`} />
+      <div className="movie-generals">
+        <h3>{movie.Title}</h3>
+        <p>{movie.Year}</p>
+      </div>
     </figure>
   )
 }

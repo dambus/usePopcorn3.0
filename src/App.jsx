@@ -4,6 +4,7 @@ import Loader from './Loader'
 import './assets/scss/main.scss'
 import Search from './Search'
 import MoviesList from './MoviesList'
+import Navigation from './Navigation'
 
 const KEY = 'f86addd7'
 
@@ -52,14 +53,36 @@ function App() {
   )
   return (
     <>
-      <h1>usePopcorn</h1>
-      <Search query={query} setQuery={setQuery} />
-
-      <p>{displayMessage}</p>
-      {isLoading && <Loader />}
-      <MoviesList movies={movies} />
+      <Navigation />
+      <Main>
+        <SearchModule>
+          <h1>usePopcorn</h1>
+          <Search query={query} setQuery={setQuery} />
+          <p>{displayMessage}</p>
+        </SearchModule>
+        <ResultsModule>
+          {isLoading && <Loader />}
+          <MoviesList movies={movies} />
+        </ResultsModule>
+        <DetailsModule></DetailsModule>
+      </Main>
     </>
   )
+}
+
+function Main({ children }) {
+  return <div className="main-window">{children}</div>
+}
+function SearchModule({ children }) {
+  return <div className="search-module">{children}</div>
+}
+
+function ResultsModule({ children }) {
+  return <div className="results-module">{children}</div>
+}
+
+function DetailsModule({ children }) {
+  return <div className="details-module">{children}</div>
 }
 
 export default App
