@@ -1,0 +1,31 @@
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.spinner {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border: 0.5rem solid;
+  border-color: #6741d9 transparent #7950f2 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s ease-in-out infinite;
+}
+.spinner-logo {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
