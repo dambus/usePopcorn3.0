@@ -1,2 +1,29 @@
 .single-movie {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: start;
+  position: relative;
+  border: 1px solid white;
+  height: 140px;
+  padding: 1rem;
+  img {
+    max-height: 120px;
+    align-self: center;
+    justify-self: start;
+    padding-bottom: 10px;
+  }
+  .movie-generals {
+    h3 {
+      font-size: 1.2rem;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+    p {
+      margin-top: 0.5rem;
+      font-weight: 200;
+      letter-spacing: 0.7px;
+    }
+  }
 }

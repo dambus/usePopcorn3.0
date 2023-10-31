@@ -4,15 +4,13 @@ function MoviesList({ movies }) {
     <>
       <h3>Search results:</h3>
       <div className="movie-list">
-        <ul>
-          {movies?.map((movie) => (
-            <Movie
-              movie={movie}
-              key={movie.imdbID}
-              // onSelectMovie={onSelectMovie}
-            />
-          ))}
-        </ul>
+        {movies?.map((movie) => (
+          <Movie
+            movie={movie}
+            key={movie.imdbID}
+            // onSelectMovie={onSelectMovie}
+          />
+        ))}
       </div>
     </>
   )
