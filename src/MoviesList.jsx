@@ -1,5 +1,5 @@
 import Movie from './Movie'
-function MoviesList({ movies }) {
+function MoviesList({ movies, onSelectMovie }) {
   return (
     <>
       <h3>Search results:</h3>
@@ -8,7 +8,7 @@ function MoviesList({ movies }) {
           <Movie
             movie={movie}
             key={movie.imdbID}
-            // onSelectMovie={onSelectMovie}
+            onSelectMovie={onSelectMovie}
           />
         ))}
       </div>

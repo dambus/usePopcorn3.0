@@ -5,17 +5,20 @@ import './assets/scss/main.scss'
 import Search from './Search'
 import MoviesList from './MoviesList'
 import Navigation from './Navigation'
+import MovieDetails from './MovieDetails'
 
 const KEY = 'f86addd7'
 
 function App() {
   const [query, setQuery] = useState('')
-  const [displayMessage, setDisplayMessage] = useState('')
+  // const [displayMessage, setDisplayMessage] = useState('')
   // const [error, setError] = useState('')
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [selectedId, setSelectedId] = useState(null)
+
   useEffect(() => {
-    const timeOutId = setTimeout(() => setDisplayMessage(query), 500)
+    const timeOutId = setTimeout(() => setSelectedId(null), 300)
     return () => clearTimeout(timeOutId)
   }, [query])
 
@@ -51,6 +54,11 @@ function App() {
     },
     [query],
   )
+
+  function handleSelectMovie(id) {
+    setSelectedId((selectedId) => (id === selectedId ? null : id))
+  }
+
   return (
     <>
       <Navigation />
@@ -58,13 +66,17 @@ function App() {
         <SearchModule>
           <h1>usePopcorn</h1>
           <Search query={query} setQuery={setQuery} />
-          <p>{displayMessage}</p>
         </SearchModule>
         <ResultsModule>
-          {isLoading && <Loader />}
-          <MoviesList movies={movies} />
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <MoviesList movies={movies} onSelectMovie={handleSelectMovie} />
+          )}
         </ResultsModule>
-        <DetailsModule></DetailsModule>
+        <DetailsModule>
+          {selectedId && <MovieDetails selectedId={selectedId} />}
+        </DetailsModule>
       </Main>
     </>
   )

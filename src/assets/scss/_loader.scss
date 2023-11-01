@@ -10,7 +10,7 @@
   width: 3rem;
   height: 3rem;
   border: 0.5rem solid;
-  border-color: #6741d9 transparent #7950f2 transparent;
+  border-color: $color-beige transparent $color-blue transparent;
   border-radius: 50%;
   animation: spin-anim 1.2s ease-in-out infinite;
 }

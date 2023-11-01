@@ -75,11 +75,11 @@ $xs: 350px;
   }
 }
 
-// img {
-//   max-width: 100%;
-//   object-fit: cover;
-//   object-position: center;
-// }
+img {
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
 @mixin test {
   border: 1px solid red;
@@ -97,7 +97,6 @@ $xs: 350px;
 
 .wrapper {
   width: 100%;
-  // max-width: 1400px;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -109,7 +108,7 @@ $xs: 350px;
   flex-direction: column;
   overflow: hidden;
   @include md {
-    min-height: calc(100vh - 6rem);
+    max-height: calc(100vh - 6rem);
     padding: 2rem;
     display: grid;
     grid-template-columns: 1fr 2fr 2fr;
