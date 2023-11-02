@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Loader from './Loader'
+import { motion, AnimatePresence } from 'framer-motion'
 const KEY = 'f86addd7'
 
 function MovieDetails({ selectedId }) {
@@ -52,29 +53,37 @@ function MovieDetails({ selectedId }) {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className="movie-details">
-          <header>
-            <img src={poster} alt={`Poster of ${movie} movie`} />
-            <div className="details-overview">
-              <h2>{title}</h2>
-              <p>
-                {released} &bull; {runtime}
-              </p>
-              <p>{genre}</p>
-              <p>
-                <span>⭐ </span>
-                <strong>{imdbRating}</strong> IMDb rating
-              </p>
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: '0', transition: { duration: '.3' } }}
+            exit={{ opacity: 0, x: -100 }}
+          >
+            <div className="movie-details">
+              <header>
+                <img src={poster} alt={`Poster of ${movie} movie`} />
+                <div className="details-overview">
+                  <h2>{title}</h2>
+                  <p>
+                    {released} &bull; {runtime}
+                  </p>
+                  <p>{genre}</p>
+                  <p>
+                    <span>⭐ </span>
+                    <strong>{imdbRating}</strong> IMDb rating
+                  </p>
+                </div>
+              </header>
+              <section>
+                <p>
+                  <em>{plot}</em>
+                </p>
+                <p>Starring: {actors}</p>
+                <p>{`Directed by ${director}`}</p>
+              </section>
             </div>
-          </header>
-          <section>
-            <p>
-              <em>{plot}</em>
-            </p>
-            <p>Starring: {actors}</p>
-            <p>{`Directed by ${director}`}</p>
-          </section>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       )}
     </>
   )

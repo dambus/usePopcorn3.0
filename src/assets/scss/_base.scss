@@ -130,3 +130,25 @@ img {
     align-items: center;
   }
 }
+
+.details-module {
+  // // @include test;
+  // position: fixed;
+  // width: calc(100% - 2rem);
+  // height: 100%;
+  // z-index: 10;
+  // background: $color-gray;
+
+  // @include md {
+  //   position: relative;
+  //   padding: 2rem;
+  //   box-shadow: 0 0 5rem 0.2rem rgba($color-blue, 0.15);
+  //   background: rgb(86, 203, 249);
+  //   background: linear-gradient(
+  //     -90deg,
+  //     rgba(86, 203, 249, 0.075) 35%,
+  //     rgba(86, 203, 249, 0.1) 100%
+  //   );
+  //   border-left: 1rem solid rgba($color-blue, 0.035);
+  // }
+}

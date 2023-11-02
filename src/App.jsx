@@ -16,6 +16,7 @@ function App() {
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
+  const [detailsOpened, setDetailsOpened] = useState(false)
 
   useEffect(() => {
     const timeOutId = setTimeout(() => setSelectedId(null), 300)
@@ -57,6 +58,7 @@ function App() {
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id))
+    setDetailsOpened(true)
   }
 
   return (
@@ -74,8 +76,14 @@ function App() {
             <MoviesList movies={movies} onSelectMovie={handleSelectMovie} />
           )}
         </ResultsModule>
+
         <DetailsModule>
-          {selectedId && <MovieDetails selectedId={selectedId} />}
+          {selectedId && (
+            <MovieDetails
+              selectedId={selectedId}
+              detailsOpened={detailsOpened}
+            />
+          )}
         </DetailsModule>
       </Main>
     </>
