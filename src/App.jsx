@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import Loader from './Loader'
 import './assets/scss/main.scss'
+import Loader from './Loader'
 import Search from './Search'
 import MoviesList from './MoviesList'
-import MovieDetails2 from './MovieDetails2'
-// import { Button, Modal } from 'flowbite-react'
+import Wrapper from './Wrapper'
+import SpringModal2 from './SpringModal2'
 
 const KEY = 'f86addd7'
 
@@ -16,8 +16,8 @@ function App() {
   const [movies, setMovies] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
-  const [detailsOpened, setDetailsOpened] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [watched, setWatched] = useState([])
 
   useEffect(() => {
     const timeOutId = setTimeout(() => setSelectedId(null), 300)
@@ -59,64 +59,51 @@ function App() {
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id))
-    setDetailsOpened(true)
-    setOpenModal(true)
+    setIsOpen(true)
   }
 
-  // const modalStyle = {
-  //   backgroundColor: 'red',
-  // }
+  function handleCloseMovie() {
+    setSelectedId(null)
+  }
+
+  function handleAddWatched(movie) {
+    setWatched((watched) => [...watched, movie])
+    // localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
+  }
 
   return (
     <>
-      <MovieDetails2
-        selectedId={selectedId}
-        setOpenModal={setOpenModal}
-        setDetailsOpened={setDetailsOpened}
-        openModal={openModal}
-        detailsOpened={detailsOpened}
-      />
-      {/* {selectedId && (
-        <Modal
-          dismissible
-          position="center-right"
-          show={openModal}
-          onClose={() => setOpenModal(false)}
-        >
-          <Modal.Header>Small modal</Modal.Header>
-          <Modal.Body>
-            <MovieDetails
+      <Wrapper>
+        <Main>
+          <SearchModule>
+            <h1>usePopcorn</h1>
+            <Search query={query} setQuery={setQuery} />
+          </SearchModule>
+          <ResultsModule>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <MoviesList movies={movies} onSelectMovie={handleSelectMovie} />
+            )}
+          </ResultsModule>
+          {selectedId && (
+            <SpringModal2
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              isLoading={isLoading}
               selectedId={selectedId}
-              detailsOpened={detailsOpened}
+              handleCloseMovie={handleCloseMovie}
+              watched={watched}
             />
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => setOpenModal(false)}>I accept</Button>
-          </Modal.Footer>
-        </Modal>
-      )} */}
-
-      <Main>
-        <SearchModule>
-          <h1>usePopcorn</h1>
-          <Search query={query} setQuery={setQuery} />
-        </SearchModule>
-        <ResultsModule>
-          {isLoading ? (
-            <Loader />
-          ) : (
-            <MoviesList movies={movies} onSelectMovie={handleSelectMovie} />
           )}
-        </ResultsModule>
-
-        <DetailsModule></DetailsModule>
-      </Main>
+        </Main>
+      </Wrapper>
     </>
   )
 }
 
 function Main({ children }) {
-  return <div className="main-window wrapper">{children}</div>
+  return <div className="main-window">{children}</div>
 }
 function SearchModule({ children }) {
   return <div className="search-module">{children}</div>
@@ -124,10 +111,6 @@ function SearchModule({ children }) {
 
 function ResultsModule({ children }) {
   return <div className="results-module">{children}</div>
-}
-
-function DetailsModule({ children }) {
-  return <div className="details-module">{children}</div>
 }
 
 export default App

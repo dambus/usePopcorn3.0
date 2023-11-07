@@ -1,26 +1,11 @@
 import { useState, useEffect } from 'react'
-import Loader from './Loader'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Button, Modal } from 'flowbite-react'
+import SpringModal2 from './SpringModal2'
+
 const KEY = 'f86addd7'
 
-function MovieDetails2({ selectedId, openModal, setOpenModal }) {
+function MovieDetails2({ selectedId, isOpen, setIsOpen }) {
   const [movie, setMovie] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  // const [openModal, setOpenModal] = useState(false)
-
-  const {
-    Title: title,
-    // Year: year,
-    Poster: poster,
-    Runtime: runtime,
-    imdbRating,
-    Plot: plot,
-    Released: released,
-    Actors: actors,
-    Director: director,
-    Genre: genre,
-  } = movie
 
   useEffect(
     function () {
@@ -32,7 +17,6 @@ function MovieDetails2({ selectedId, openModal, setOpenModal }) {
         const data = await res.json()
         setMovie(data)
         setIsLoading(false)
-        // setIsLoading(false)
       }
       getMovieDetails()
     },
@@ -41,73 +25,25 @@ function MovieDetails2({ selectedId, openModal, setOpenModal }) {
 
   useEffect(
     function () {
-      if (!title) return
-      document.title = `Movie: ${title}`
+      if (!movie.Title) return
+      document.title = `Movie: ${movie.Title}`
 
       return function () {
         document.title = 'usePopcorn'
       }
     },
-    [title],
+    [movie.Title],
   )
 
   return (
     <>
       {selectedId && (
-        <Modal
-          dismissible
-          position="center-right"
-          show={openModal}
-          onClose={() => setOpenModal(false)}
-        >
-          <Modal.Header>
-            <div className="text-md">{movie.Title}</div>
-          </Modal.Header>
-          <Modal.Body>
-            {isLoading ? (
-              <Loader />
-            ) : (
-              <AnimatePresence>
-                <motion.div
-                  initial={{ opacity: 0, x: -100 }}
-                  animate={{
-                    opacity: 1,
-                    x: '0',
-                    transition: { duration: '.3' },
-                  }}
-                  exit={{ opacity: 0, x: -100 }}
-                >
-                  <div className="movie-details">
-                    <header>
-                      <img src={poster} alt={`Poster of ${movie} movie`} />
-                      <div className="details-overview">
-                        {/* <h2>{title}</h2> */}
-                        <p>
-                          {released} &bull; {runtime}
-                        </p>
-                        <p>{genre}</p>
-                        <p>
-                          <span>⭐ </span>
-                          <strong>{imdbRating}</strong> IMDb rating
-                        </p>
-                      </div>
-                    </header>
-                    <section>
-                      <p>
-                        <em>{plot}</em>
-                      </p>
-                      <p>Starring: {actors}</p>
-                      <p>{`Directed by ${director}`}</p>
-                    </section>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            )}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={() => setOpenModal(false)}>I accept</Button>
-          </Modal.Footer>
-        </Modal>
+        <SpringModal2
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          isLoading={isLoading}
+          movie={movie}
+        ></SpringModal2>
       )}
     </>
   )
