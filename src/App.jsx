@@ -6,7 +6,7 @@ import Search from './Search'
 import MoviesList from './MoviesList'
 import Wrapper from './Wrapper'
 import SpringModal2 from './SpringModal2'
-import WatchedList from './WatchedList'
+import WatchedListModal from './WatchedListModal'
 import Button from './Button'
 
 const KEY = 'f86addd7'
@@ -20,6 +20,7 @@ function App() {
   const [selectedId, setSelectedId] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
   const [watched, setWatched] = useState([])
+  const [watchedModalOpen, setWatchedModalOpen] = useState(false)
 
   useEffect(() => {
     const timeOutId = setTimeout(() => setSelectedId(null), 300)
@@ -73,6 +74,14 @@ function App() {
     // localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
   }
 
+  function handleDeleteWatched(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id))
+  }
+
+  function handleWatchedList() {
+    setWatchedModalOpen(true)
+  }
+
   return (
     <>
       <Wrapper>
@@ -82,14 +91,26 @@ function App() {
               my<span>Popcorn</span>
             </h1>
             <Search query={query} setQuery={setQuery} />
-            <Button type="primary" text="my list" buttonIcon="" />
-            <WatchedList watched={watched} />
+            <Button
+              type="primary"
+              text="my list"
+              buttonIcon=""
+              clickAction={handleWatchedList}
+            />
           </SearchModule>
           <ResultsModule>
             {isLoading ? (
               <Loader />
             ) : (
               <MoviesList movies={movies} onSelectMovie={handleSelectMovie} />
+            )}
+            {watchedModalOpen && (
+              <WatchedListModal
+                watched={watched}
+                watchedModalOpen={watchedModalOpen}
+                setWatchedModalOpen={setWatchedModalOpen}
+                onDeleteWatched={handleDeleteWatched}
+              />
             )}
           </ResultsModule>
           {selectedId && (

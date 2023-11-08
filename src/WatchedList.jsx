@@ -1,13 +1,17 @@
 // import Movie from './Movie'
 import WatchedMovie from './WatchedMovie'
 
-function WatchedList({ watched }) {
+function WatchedList({ watched, onDeleteWatched }) {
   return (
-    <ul className="list">
+    <div className="watched-list">
       {watched.map((movie) => (
-        <WatchedMovie movie={movie} key={movie.imdbID} />
+        <WatchedMovie
+          movie={movie}
+          key={movie.imdbID}
+          onDeleteWatched={onDeleteWatched}
+        />
       ))}
-    </ul>
+    </div>
   )
 }
 

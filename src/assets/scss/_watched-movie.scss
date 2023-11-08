@@ -1,0 +1,26 @@
+.watched-movie {
+  // @include test;
+  display: grid;
+  grid-template-columns: 15% 1fr;
+  gap: 0.5rem;
+
+  &--details {
+    h3 {
+      font-family: $font-primary;
+      font-weight: 500;
+      font-size: 1rem;
+      @include md {
+        font-weight: 700;
+        font-size: 2rem;
+      }
+    }
+    p {
+      font-family: $font-primary;
+      font-weight: 300;
+      font-size: 0.8rem;
+      @include md {
+        font-size: 1rem;
+      }
+    }
+  }
+}

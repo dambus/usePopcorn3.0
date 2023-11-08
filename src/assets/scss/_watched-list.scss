@@ -1,0 +1,21 @@
+.watched-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 50vh;
+  overflow: auto;
+  @include md {
+    max-height: 66vh;
+  }
+  // grid-template-columns: repeat(2, 50%);
+  // justify-content: center;
+  // align-items: start;
+  z-index: 10;
+  padding: 0;
+  // background-color: $color-brand-primary;
+  @include md {
+    padding: 0.5rem;
+  }
+  list-style: none;
+}

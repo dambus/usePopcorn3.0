@@ -132,10 +132,11 @@ img {
 .movie-list {
   display: flex;
   flex-direction: column;
-  @include lg {
+  gap: 0.5rem;
+  @include md {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 0.5rem;
     padding: 1rem;
     justify-content: center;
     align-items: center;

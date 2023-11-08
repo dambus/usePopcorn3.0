@@ -2,7 +2,13 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 0.5rem;
-  background-color: rgba($color-blue, 0.05);
+  color: white;
+  // background-color: rgba($color-blue, 0.05);
+  background: linear-gradient(
+    90deg,
+    rgba($color-brand-primary, 0.5),
+    rgba($color-brand-secondary, 0.25)
+  );
   justify-content: center;
   align-items: start;
   position: relative;

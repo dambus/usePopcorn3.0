@@ -1,27 +1,35 @@
-function WatchedMovie({ movie }) {
+function WatchedMovie({ movie, onDeleteWatched }) {
   return (
-    <li key={movie.imdbID}>
+    <div className="watched-movie" key={movie.imdbID}>
       <img
         src={movie.poster}
         alt={`${movie.title} poster`}
-        className="max-w-[120px]"
+        className="md:max-w-[90px]"
       />
-      <h3>{movie.title}</h3>
-      <div>
-        <p>
-          <span>⭐️</span>
-          <span>{movie.imdbRating}</span>
-        </p>
-        <p>
-          <span>🌟</span>
-          <span>{movie.userRating}</span>
-        </p>
-        <p>
-          <span>⏳</span>
-          <span>{movie.runtime} min</span>
-        </p>
+      <div className="watched-movie--details">
+        <h3>{movie.title}</h3>
+        <div>
+          <p>
+            <span>⭐️ IMDB rating: </span>
+            <span className="font-bold">{movie.imdbRating}</span>
+          </p>
+          <p>
+            <span>🌟 Your rating: </span>
+            <span className="font-bold">{movie.userRating}</span>
+          </p>
+          <p>
+            <span>⏳ Duration: </span>
+            <span>{movie.runtime} min</span>
+          </p>
+        </div>
       </div>
-    </li>
+      <button
+        className="btn btn-primary"
+        onClick={() => onDeleteWatched(movie.imdbID)}
+      >
+        delete
+      </button>
+    </div>
   )
 }
 

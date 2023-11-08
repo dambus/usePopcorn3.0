@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { RiMovie2Fill } from 'react-icons/ri'
 import Loader from './Loader'
 import StarRating from './StarRating'
+import ButtonClose from './ButtonClose'
 
 const KEY = 'f86addd7'
 
@@ -97,7 +98,7 @@ const SpringModal = ({
             animate={{ scale: 1, rotate: '0deg' }}
             exit={{ scale: 0, rotate: '0deg' }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-gradient-to-br from-violet-600 to-indigo-600 text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-hidden"
+            className="bg-gradient-to-br from-violet-600 to-indigo-600 text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-auto max-h-[82.5vh] md:max-h-[90vh]"
           >
             {/* background image */}
             <RiMovie2Fill className="text-white/10 rotate-12 text-[250px] absolute z-0 -top-24 -left-24" />
@@ -121,7 +122,7 @@ const SpringModal = ({
                   {genre}, 🕜 {runtime}
                 </p>
 
-                <span className="absolute top-[1.25rem] -rotate-90 font-bold text-3xl -left-[2.25rem]">
+                <span className="absolute top-[1.25rem] -rotate-90 font-bold text-3xl -left-[2.25rem] max-w-[5ch] leading-[1]">
                   {year}
                 </span>
                 <p className="my-4 text-sm">{plot}</p>
@@ -159,7 +160,7 @@ const SpringModal = ({
                         </button>
                       )}
                       <button
-                        onClick={() => setIsOpen(false)}
+                        onClick={handleCloseMovie}
                         className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
                       >
                         Nah, go back
@@ -175,6 +176,7 @@ const SpringModal = ({
                 </div>
               </div>
             )}
+            <ButtonClose clickAction={handleCloseMovie} />
           </motion.div>
         </motion.div>
       )}
