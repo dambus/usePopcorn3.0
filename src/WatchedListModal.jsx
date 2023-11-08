@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { TiInputChecked } from 'react-icons/ti'
 import WatchedList from './WatchedList'
+import ButtonClose from './ButtonClose'
 
 const WatchedListModal = ({
   watchedModalOpen,
@@ -43,20 +44,8 @@ const WatchedListModal = ({
               />
             </div>
             {/* FOOTER */}
-            <div className="flex gap-2 mt-16">
-              <button
-                onClick={() => setWatchedModalOpen(false)}
-                className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
-              >
-                Nah, go back
-              </button>
-              <button
-                onClick={() => setWatchedModalOpen(false)}
-                className="bg-white hover:opacity-90 transition-opacity text-indigo-600 font-semibold w-full py-2 rounded"
-              >
-                Understood!
-              </button>
-            </div>
+
+            <ButtonClose clickAction={() => setWatchedModalOpen(false)} />
           </motion.div>
         </motion.div>
       )}

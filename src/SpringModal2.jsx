@@ -147,7 +147,7 @@ const SpringModal = ({
                       <p>Seen this movie? Would you like to rate it?</p>
                       <StarRating
                         maxRating={10}
-                        size={24}
+                        size={18}
                         onSetRating={setUserRating}
                         defaultRating={userRating}
                       />
