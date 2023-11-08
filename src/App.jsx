@@ -6,6 +6,8 @@ import Search from './Search'
 import MoviesList from './MoviesList'
 import Wrapper from './Wrapper'
 import SpringModal2 from './SpringModal2'
+import WatchedList from './WatchedList'
+import Button from './Button'
 
 const KEY = 'f86addd7'
 
@@ -76,8 +78,12 @@ function App() {
       <Wrapper>
         <Main>
           <SearchModule>
-            <h1>usePopcorn</h1>
+            <h1 className="app-heading">
+              my<span>Popcorn</span>
+            </h1>
             <Search query={query} setQuery={setQuery} />
+            <Button type="primary" text="my list" buttonIcon="" />
+            <WatchedList watched={watched} />
           </SearchModule>
           <ResultsModule>
             {isLoading ? (
@@ -93,6 +99,7 @@ function App() {
               isLoading={isLoading}
               selectedId={selectedId}
               handleCloseMovie={handleCloseMovie}
+              onAddWatched={handleAddWatched}
               watched={watched}
             />
           )}

@@ -4,10 +4,29 @@ $color-red: #f25757;
 $color-beige: #e8ddb5;
 $color-blue: #56cbf9;
 
+$color-brand-primary: #7c3aed;
+$color-brand-secondary: #4e46f5;
+
 @function tint($color, $percentage) {
   @return mix(white, $color, $percentage);
 }
 
 @function shade($color, $percentage) {
   @return mix(black, $color, $percentage);
+}
+
+@mixin cb-primary {
+  background-color: $color-brand-primary;
+}
+
+@mixin cb-secondary {
+  background-color: $color-brand-secondary;
+}
+
+@mixin c-main-gradient {
+  background: linear-gradient(
+    -33deg,
+    $color-brand-primary,
+    $color-brand-secondary
+  );
 }

@@ -6,7 +6,14 @@ import StarRating from './StarRating'
 
 const KEY = 'f86addd7'
 
-const SpringModal = ({ isOpen, setIsOpen, selectedId, handleCloseMovie }) => {
+const SpringModal = ({
+  isOpen,
+  setIsOpen,
+  selectedId,
+  handleCloseMovie,
+  onAddWatched,
+  watched,
+}) => {
   const [movie, setMovie] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [userRating, setUserRating] = useState(0)
@@ -50,6 +57,27 @@ const SpringModal = ({ isOpen, setIsOpen, selectedId, handleCloseMovie }) => {
     },
     [movie.Title],
   )
+
+  function handleAdd() {
+    const newWatchedMovie = {
+      imdbID: selectedId,
+      title,
+      year,
+      poster,
+      imdbRating: Number(imdbRating),
+      runtime: Number(runtime.split(' ').at(0)),
+      userRating,
+    }
+
+    onAddWatched(newWatchedMovie)
+    console.log(watched)
+    // onCloseMovie();
+  }
+
+  const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId)
+
+  const watchedUserRating = watched.find((movie) => movie.imdbID === selectedId)
+    ?.userRating
 
   return (
     <AnimatePresence>
@@ -104,27 +132,46 @@ const SpringModal = ({ isOpen, setIsOpen, selectedId, handleCloseMovie }) => {
                   <strong>Cast:</strong> {actors}
                 </p>
 
-                <div className="flex gap-2 mt-4">
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
-                  >
-                    Nah, go back
-                  </button>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="bg-white hover:opacity-90 transition-opacity text-indigo-600 font-semibold w-full py-2 rounded"
-                  >
-                    Understood!
-                  </button>
-                </div>
+                <div className="flex gap-2 mt-4"></div>
+
                 <div className="grid my-4 items-center mx-auto">
-                  <StarRating
+                  {/* <StarRating
                     maxRating={10}
                     size={24}
                     onSetRating={setUserRating}
                     defaultRating={userRating}
-                  />
+                  /> */}
+                  {!isWatched ? (
+                    <>
+                      <p>Seen this movie? Would you like to rate it?</p>
+                      <StarRating
+                        maxRating={10}
+                        size={24}
+                        onSetRating={setUserRating}
+                        defaultRating={userRating}
+                      />
+                      {userRating > 0 && (
+                        <button
+                          className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
+                          onClick={handleAdd}
+                        >
+                          + Add to list
+                        </button>
+                      )}
+                      <button
+                        onClick={() => setIsOpen(false)}
+                        className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
+                      >
+                        Nah, go back
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-gray-300">
+                        You rated this movie {watchedUserRating} <span>⭐</span>
+                      </p>
+                    </>
+                  )}
                 </div>
               </div>
             )}

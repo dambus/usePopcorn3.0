@@ -1,0 +1,55 @@
+.btn {
+  @include text-button;
+  padding: 1rem 1.6rem;
+  transition: all 0.2s !important;
+}
+
+.btn-primary {
+  color: white;
+  border-radius: 0.25rem;
+  @include c-main-gradient;
+  &:hover {
+    background-color: shade($color-brand-primary, 10%);
+  }
+}
+
+.btn-rectangle {
+  color: white;
+  @include cb-primary;
+  &:hover {
+    background-color: shade($color-brand-primary, 10%);
+  }
+}
+
+.btn-rounded {
+  color: white;
+  border-radius: 30px;
+  @include cb-primary;
+  &:hover {
+    background-color: shade($color-brand-primary, 10%);
+  }
+}
+
+.btn-bordered {
+  display: flex;
+  color: shade($color-brand-primary, 20%);
+  border: 2px solid shade($color-brand-primary, 20%);
+  border-radius: 8px;
+  text-transform: uppercase;
+  text-align: left;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 0.66rem !important;
+  // width: 50%;
+  margin: 0 auto;
+  justify-content: space-between;
+  span.button-text {
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+  }
+  &:hover {
+    span.button-icon {
+      transform: translateX(-0.15rem);
+    }
+  }
+}

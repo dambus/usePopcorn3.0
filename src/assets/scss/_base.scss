@@ -113,8 +113,19 @@ img {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2rem;
-    align-items: center;
-    justify-content: start;
+    align-items: start;
+    justify-items: start;
+  }
+}
+
+.app-heading {
+  font: $font-primary;
+  font-weight: 700;
+  font-size: 4rem;
+  color: $color-brand-secondary;
+  text-shadow: 1px 3px 0.2rem rgba(#fff, 0.15);
+  span {
+    color: white;
   }
 }
 

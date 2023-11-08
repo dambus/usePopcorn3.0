@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Raleway:wght@300;500;700;900&display=swap");
+
+$font-primary: "Raleway", sans-serif;
+$font-secondary: "Lora", serif;
+
+@mixin text-button {
+  text-transform: none;
+  font-family: $font-primary;
+  font-size: 15px;
+  line-height: 18px;
+  font-style: normal;
+  font-weight: 900;
+}
