@@ -3,8 +3,11 @@ import PropTypes from 'prop-types'
 
 const containerStyle = {
   display: 'flex',
+  justifyContent: 'center',
   alignItems: 'center',
   gap: '16px',
+  marginTop: '1rem',
+  marginBottom: '1rem',
 }
 
 const starContainerStyle = {

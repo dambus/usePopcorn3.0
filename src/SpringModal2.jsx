@@ -135,16 +135,12 @@ const SpringModal = ({
 
                 <div className="flex gap-2 mt-4"></div>
 
-                <div className="grid my-4 items-center mx-auto">
-                  {/* <StarRating
-                    maxRating={10}
-                    size={24}
-                    onSetRating={setUserRating}
-                    defaultRating={userRating}
-                  /> */}
+                <div className="grid gap-2 my-4 items-center mx-auto border-t-2 border-slate-50/10 pt-2">
                   {!isWatched ? (
                     <>
-                      <p>Seen this movie? Would you like to rate it?</p>
+                      <p className="text-center">
+                        Seen this movie? Would you like to rate it?
+                      </p>
                       <StarRating
                         maxRating={10}
                         size={18}
@@ -153,7 +149,7 @@ const SpringModal = ({
                       />
                       {userRating > 0 && (
                         <button
-                          className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
+                          className="bg-indigo-500 hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
                           onClick={handleAdd}
                         >
                           + Add to list
@@ -161,14 +157,14 @@ const SpringModal = ({
                       )}
                       <button
                         onClick={handleCloseMovie}
-                        className="bg-transparent hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
+                        className="bg-transparent border-2 border-white/10 hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
                       >
                         Nah, go back
                       </button>
                     </>
                   ) : (
                     <>
-                      <p className="text-gray-300">
+                      <p className="text-gray-300 text-center mt-2">
                         You rated this movie {watchedUserRating} <span>⭐</span>
                       </p>
                     </>

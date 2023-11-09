@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { TiInputChecked } from 'react-icons/ti'
+import { GiWindsock } from 'react-icons/gi'
 import WatchedList from './WatchedList'
 import ButtonClose from './ButtonClose'
 
@@ -8,6 +9,7 @@ const WatchedListModal = ({
   setWatchedModalOpen,
   watched,
   onDeleteWatched,
+  onSelectMovie,
 }) => {
   return (
     <AnimatePresence>
@@ -31,17 +33,22 @@ const WatchedListModal = ({
             {/* CONTENT START */}
             <div className="relative z-10">
               <div className="bg-white w-16 h-16 mb-2 rounded-full text-3xl text-indigo-600 grid place-items-center mx-auto">
-                <TiInputChecked />
+                {watched.length > 0 ? <TiInputChecked /> : <GiWindsock />}
               </div>
               <h3 className="text-3xl font-bold text-center mb-2">
                 Your Watched Movies
               </h3>
             </div>
-            <div className="">
-              <WatchedList
-                watched={watched}
-                onDeleteWatched={onDeleteWatched}
-              />
+            <div className="mt-8 mb-8">
+              {watched.length > 0 ? (
+                <WatchedList
+                  watched={watched}
+                  onDeleteWatched={onDeleteWatched}
+                  onSelectMovie={onSelectMovie}
+                />
+              ) : (
+                <div className="text-center">😞 Your watched list is empty</div>
+              )}
             </div>
             {/* FOOTER */}
 

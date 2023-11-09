@@ -1,4 +1,6 @@
-function WatchedMovie({ movie, onDeleteWatched }) {
+import { AiFillDelete } from 'react-icons/ai'
+
+function WatchedMovie({ movie, onDeleteWatched, onSelectMovie }) {
   return (
     <div className="watched-movie" key={movie.imdbID}>
       <img
@@ -23,12 +25,12 @@ function WatchedMovie({ movie, onDeleteWatched }) {
           </p>
         </div>
       </div>
-      <button
-        className="btn btn-primary"
+      <AiFillDelete
+        className="text-white/50 hover:text-red-300 justify-self-end hover:scale-110 transition-all cursor-pointer"
+        size={24}
         onClick={() => onDeleteWatched(movie.imdbID)}
-      >
-        delete
-      </button>
+      />
+      <button onClick={() => onSelectMovie(movie.imdbID)}>delete</button>
     </div>
   )
 }

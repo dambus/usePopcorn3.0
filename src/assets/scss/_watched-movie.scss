@@ -1,14 +1,18 @@
 .watched-movie {
+  border-top: 1px solid tint($color-brand-primary, 20%);
+  padding-top: 1rem;
   // @include test;
   display: grid;
-  grid-template-columns: 15% 1fr;
-  gap: 0.5rem;
+  grid-template-columns: 15% 1fr 20%;
+  gap: 0.75rem;
 
   &--details {
     h3 {
       font-family: $font-primary;
       font-weight: 500;
       font-size: 1rem;
+      line-height: 1;
+      margin-bottom: 0.75rem;
       @include md {
         font-weight: 700;
         font-size: 2rem;
