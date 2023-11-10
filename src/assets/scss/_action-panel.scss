@@ -1,0 +1,49 @@
+.action-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  justify-items: center;
+  margin-bottom: 2rem;
+  @include md {
+    height: calc(100vh - 6rem);
+    justify-content: center;
+    margin-bottom: 0;
+  }
+}
+
+.app-heading {
+  font: $font-primary;
+  text-align: center;
+  font-weight: 500;
+  font-size: 2rem;
+  color: $color-brand-secondary;
+  text-shadow: 1px 3px 0.2rem rgba(#fff, 0.15);
+  margin-bottom: 1rem;
+  span {
+    color: white;
+  }
+  @include md {
+    font-weight: 700;
+    font-size: 4rem;
+    text-align: left;
+  }
+}
+
+.search-module {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .search-input {
+    background-color: transparent;
+    outline: none;
+    border: 1px solid $color-brand-secondary;
+    padding: 0.33rem;
+    border-radius: 12px;
+    @include md {
+      padding: 0.5rem;
+    }
+  }
+}

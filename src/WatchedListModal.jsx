@@ -9,7 +9,6 @@ const WatchedListModal = ({
   setWatchedModalOpen,
   watched,
   onDeleteWatched,
-  onSelectMovie,
 }) => {
   return (
     <AnimatePresence>
@@ -44,7 +43,6 @@ const WatchedListModal = ({
                 <WatchedList
                   watched={watched}
                   onDeleteWatched={onDeleteWatched}
-                  onSelectMovie={onSelectMovie}
                 />
               ) : (
                 <div className="text-center">😞 Your watched list is empty</div>

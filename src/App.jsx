@@ -86,7 +86,7 @@ function App() {
     <>
       <Wrapper>
         <Main>
-          <SearchModule>
+          <ActionPanel>
             <h1 className="app-heading">
               my<span>Popcorn</span>
             </h1>
@@ -97,7 +97,7 @@ function App() {
               buttonIcon=""
               clickAction={handleWatchedList}
             />
-          </SearchModule>
+          </ActionPanel>
           <ResultsModule>
             {isLoading ? (
               <Loader />
@@ -133,8 +133,8 @@ function App() {
 function Main({ children }) {
   return <div className="main-window">{children}</div>
 }
-function SearchModule({ children }) {
-  return <div className="search-module">{children}</div>
+function ActionPanel({ children }) {
+  return <div className="action-panel">{children}</div>
 }
 
 function ResultsModule({ children }) {

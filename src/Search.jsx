@@ -1,9 +1,10 @@
 function Search({ query, setQuery }) {
   return (
-    <div>
+    <div className="search-module">
       <input
+        className="search-input"
         type="text"
-        placeholder="search movies..."
+        placeholder="Search movies..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

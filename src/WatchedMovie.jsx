@@ -1,6 +1,6 @@
 import { AiFillDelete } from 'react-icons/ai'
 
-function WatchedMovie({ movie, onDeleteWatched, onSelectMovie }) {
+function WatchedMovie({ movie, onDeleteWatched }) {
   return (
     <div className="watched-movie" key={movie.imdbID}>
       <img
@@ -30,7 +30,6 @@ function WatchedMovie({ movie, onDeleteWatched, onSelectMovie }) {
         size={24}
         onClick={() => onDeleteWatched(movie.imdbID)}
       />
-      <button onClick={() => onSelectMovie(movie.imdbID)}>delete</button>
     </div>
   )
 }

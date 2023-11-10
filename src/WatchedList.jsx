@@ -1,7 +1,7 @@
 // import Movie from './Movie'
 import WatchedMovie from './WatchedMovie'
 
-function WatchedList({ watched, onDeleteWatched, onSelectMovie }) {
+function WatchedList({ watched, onDeleteWatched }) {
   return (
     <div className="watched-list">
       {watched.map((movie) => (
@@ -9,8 +9,6 @@ function WatchedList({ watched, onDeleteWatched, onSelectMovie }) {
           movie={movie}
           key={movie.imdbID}
           onDeleteWatched={onDeleteWatched}
-          // onSelectMovie={onSelectMovie}
-          onClick={() => onSelectMovie(movie.imdbID)}
         />
       ))}
     </div>
