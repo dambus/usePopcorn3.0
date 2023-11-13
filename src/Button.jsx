@@ -1,6 +1,6 @@
 function Button({ text, type, buttonIcon = '', clickAction }) {
   return (
-    <button className={`btn btn-${type}`} onClick={clickAction}>
+    <button className={`btn btn-${type} mt-4`} onClick={clickAction}>
       <span className="button-text">{text}</span>
       <span className="button-icon">{buttonIcon}</span>
     </button>

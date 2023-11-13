@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import './assets/scss/main.scss'
+import Logo from './Logo'
 import Loader from './Loader'
 import Search from './Search'
 import MoviesList from './MoviesList'
@@ -19,8 +20,22 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const [selectedId, setSelectedId] = useState(null)
   const [isOpen, setIsOpen] = useState(false)
-  const [watched, setWatched] = useState([])
+  const [watched, setWatched] = useState(() => {
+    const watchedItems = JSON.parse(localStorage.getItem('watchedMovies'))
+    if (watchedItems) {
+      return watchedItems
+    } else {
+      return []
+    }
+  })
   const [watchedModalOpen, setWatchedModalOpen] = useState(false)
+
+  useEffect(
+    function () {
+      localStorage.setItem('watchedMovies', JSON.stringify(watched))
+    },
+    [watched],
+  )
 
   useEffect(() => {
     const timeOutId = setTimeout(() => setSelectedId(null), 300)
@@ -87,6 +102,7 @@ function App() {
       <Wrapper>
         <Main>
           <ActionPanel>
+            <Logo />
             <h1 className="app-heading">
               my<span>Popcorn</span>
             </h1>
