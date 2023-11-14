@@ -8,6 +8,7 @@ import MoviesList from './MoviesList'
 import Wrapper from './Wrapper'
 import SpringModal2 from './SpringModal2'
 import WatchedListModal from './WatchedListModal'
+import ToWatchListModal from './ToWatchListModal'
 import Button from './Button'
 
 const KEY = 'f86addd7'
@@ -28,13 +29,30 @@ function App() {
       return []
     }
   })
+
+  const [toWatch, setToWatch] = useState(() => {
+    const toWatchItems = JSON.parse(localStorage.getItem('toWatchMovies'))
+    if (toWatchItems) {
+      return toWatchItems
+    } else {
+      return []
+    }
+  })
   const [watchedModalOpen, setWatchedModalOpen] = useState(false)
+  const [toWatchModalOpen, setToWatchModalOpen] = useState(false)
 
   useEffect(
     function () {
       localStorage.setItem('watchedMovies', JSON.stringify(watched))
     },
     [watched],
+  )
+
+  useEffect(
+    function () {
+      localStorage.setItem('toWatchMovies', JSON.stringify(toWatch))
+    },
+    [toWatch],
   )
 
   useEffect(() => {
@@ -88,13 +106,25 @@ function App() {
     setWatched((watched) => [...watched, movie])
     // localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
   }
+  function handleAddToWatch(movie) {
+    setToWatch((toWatch) => [...toWatch, movie])
+    // localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
+  }
 
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id))
   }
 
+  function handleDeleteToWatch(id) {
+    setToWatch((toWatch) => toWatch.filter((movie) => movie.imdbID !== id))
+  }
+
   function handleWatchedList() {
     setWatchedModalOpen(true)
+  }
+
+  function handleToWatchList() {
+    setToWatchModalOpen(true)
   }
 
   return (
@@ -113,6 +143,12 @@ function App() {
               buttonIcon=""
               clickAction={handleWatchedList}
             />
+            <Button
+              type="primary"
+              text="to watch"
+              buttonIcon=""
+              clickAction={handleToWatchList}
+            />
           </ActionPanel>
           <ResultsModule>
             {isLoading ? (
@@ -128,6 +164,15 @@ function App() {
                 onDeleteWatched={handleDeleteWatched}
               />
             )}
+
+            {toWatchModalOpen && (
+              <ToWatchListModal
+                toWatch={toWatch}
+                toWatchModalOpen={toWatchModalOpen}
+                setToWatchModalOpen={setToWatchModalOpen}
+                onDeleteToWatch={handleDeleteToWatch}
+              />
+            )}
           </ResultsModule>
           {selectedId && (
             <SpringModal2
@@ -137,7 +182,9 @@ function App() {
               selectedId={selectedId}
               handleCloseMovie={handleCloseMovie}
               onAddWatched={handleAddWatched}
+              onAddToWatch={handleAddToWatch}
               watched={watched}
+              toWatch={toWatch}
             />
           )}
         </Main>

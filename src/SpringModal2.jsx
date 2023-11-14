@@ -13,7 +13,9 @@ const SpringModal = ({
   selectedId,
   handleCloseMovie,
   onAddWatched,
+  // onAddToWatch,
   watched,
+  toWatch,
 }) => {
   const [movie, setMovie] = useState({})
   const [isLoading, setIsLoading] = useState(false)
@@ -71,11 +73,23 @@ const SpringModal = ({
     }
 
     onAddWatched(newWatchedMovie)
-    console.log(watched)
-    // onCloseMovie();
   }
 
+  // function handleAddto() {
+  //   const newToWatchMovie = {
+  //     imdbIDTo: selectedId,
+  //     titleTo,
+  //     yearTo,
+  //     posterTo,
+  //     imdbRatingTo: Number(imdbRating),
+  //     runtimeTo: Number(runtime.split(' ').at(0)),
+  //   }
+
+  //   onAddToWatch(newToWatchMovie)
+  // }
+
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId)
+  const isToWatch = toWatch.map((movie) => movie.imdbID).includes(selectedId)
 
   const watchedUserRating = watched.find((movie) => movie.imdbID === selectedId)
     ?.userRating
@@ -154,6 +168,19 @@ const SpringModal = ({
                         >
                           + Add to list
                         </button>
+                      )}
+
+                      {!isToWatch ? (
+                        <button
+                          className="bg-indigo-500 hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
+                          onClick={null}
+                        >
+                          Cool, add this on my to-watch list
+                        </button>
+                      ) : (
+                        <p className="text-center text-green-400">
+                          You added this movie to your watch list
+                        </p>
                       )}
                       <button
                         onClick={handleCloseMovie}
