@@ -98,8 +98,11 @@ img {
 .wrapper {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0.25rem;
   color: shade(white, 30%);
+  @include md {
+    padding: 1rem;
+  }
 }
 
 .main-window {
