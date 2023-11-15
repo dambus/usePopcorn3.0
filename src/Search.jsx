@@ -4,7 +4,7 @@ function Search({ query, setQuery }) {
       <input
         className="search-input"
         type="text"
-        placeholder="Search movies..."
+        placeholder="Type to search movies..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />

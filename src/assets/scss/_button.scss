@@ -24,9 +24,11 @@
 .btn-rounded {
   color: white;
   border-radius: 30px;
-  @include cb-primary;
+  font-weight: 500; // @include cb-primary;
+  background-color: rgba($color-brand-secondary, 0.5);
   &:hover {
-    background-color: shade($color-brand-primary, 10%);
+    background-color: rgba($color-brand-secondary, 0.75);
+    transition: all 0.25s ease;
   }
 }
 

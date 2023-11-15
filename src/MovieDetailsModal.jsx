@@ -7,13 +7,13 @@ import ButtonClose from './ButtonClose'
 
 const KEY = 'f86addd7'
 
-const SpringModal = ({
+const MovieDetailsModal = ({
   isOpen,
   setIsOpen,
   selectedId,
   handleCloseMovie,
   onAddWatched,
-  // onAddToWatch,
+  onAddToWatch,
   watched,
   toWatch,
 }) => {
@@ -61,8 +61,8 @@ const SpringModal = ({
     [movie.Title],
   )
 
-  function handleAdd() {
-    const newWatchedMovie = {
+  function newListItem() {
+    const newListMovie = {
       imdbID: selectedId,
       title,
       year,
@@ -71,22 +71,16 @@ const SpringModal = ({
       runtime: Number(runtime.split(' ').at(0)),
       userRating,
     }
-
-    onAddWatched(newWatchedMovie)
+    return newListMovie
   }
 
-  // function handleAddto() {
-  //   const newToWatchMovie = {
-  //     imdbIDTo: selectedId,
-  //     titleTo,
-  //     yearTo,
-  //     posterTo,
-  //     imdbRatingTo: Number(imdbRating),
-  //     runtimeTo: Number(runtime.split(' ').at(0)),
-  //   }
+  function handleAddWatched() {
+    onAddWatched(newListItem())
+  }
 
-  //   onAddToWatch(newToWatchMovie)
-  // }
+  function handleAddToWatch() {
+    onAddToWatch(newListItem())
+  }
 
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId)
   const isToWatch = toWatch.map((movie) => movie.imdbID).includes(selectedId)
@@ -153,7 +147,8 @@ const SpringModal = ({
                   {!isWatched ? (
                     <>
                       <p className="text-center">
-                        Seen this movie? Would you like to rate it?
+                        Seen this movie? Rate it and add tou your{' '}
+                        <span className="text-violet-400">watched</span> list?
                       </p>
                       <StarRating
                         maxRating={10}
@@ -164,23 +159,25 @@ const SpringModal = ({
                       {userRating > 0 && (
                         <button
                           className="bg-indigo-500 hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
-                          onClick={handleAdd}
+                          onClick={handleAddWatched}
                         >
                           + Add to list
                         </button>
                       )}
 
-                      {!isToWatch ? (
+                      {!isToWatch && userRating == 0 ? (
                         <button
                           className="bg-indigo-500 hover:bg-white/10 transition-colors text-white font-semibold w-full py-2 rounded"
-                          onClick={null}
+                          onClick={handleAddToWatch}
                         >
-                          Cool, add this on my to-watch list
+                          Cool, add this to my watch list
                         </button>
                       ) : (
-                        <p className="text-center text-green-400">
-                          You added this movie to your watch list
-                        </p>
+                        isWatched && (
+                          <p className="text-center text-green-400">
+                            You added this movie to your watch list
+                          </p>
+                        )
                       )}
                       <button
                         onClick={handleCloseMovie}
@@ -192,7 +189,8 @@ const SpringModal = ({
                   ) : (
                     <>
                       <p className="text-gray-300 text-center mt-2">
-                        You rated this movie {watchedUserRating} <span>⭐</span>
+                        You watched and rated this movie {watchedUserRating}{' '}
+                        <span>⭐</span>
                       </p>
                     </>
                   )}
@@ -207,4 +205,4 @@ const SpringModal = ({
   )
 }
 
-export default SpringModal
+export default MovieDetailsModal

@@ -6,10 +6,12 @@ import Loader from './Loader'
 import Search from './Search'
 import MoviesList from './MoviesList'
 import Wrapper from './Wrapper'
-import SpringModal2 from './SpringModal2'
 import WatchedListModal from './WatchedListModal'
 import ToWatchListModal from './ToWatchListModal'
 import Button from './Button'
+import MovieDetailsModal from './MovieDetailsModal'
+import { RiMovie2Fill } from 'react-icons/ri'
+import { TiInputChecked } from 'react-icons/ti'
 
 const KEY = 'f86addd7'
 
@@ -106,8 +108,8 @@ function App() {
     setWatched((watched) => [...watched, movie])
     // localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
   }
-  function handleAddToWatch(movie) {
-    setToWatch((toWatch) => [...toWatch, movie])
+  function handleAddToWatch(movieToWatch) {
+    setToWatch((toWatch) => [...toWatch, movieToWatch])
     // localStorage.setItem("APP_WATCHED", JSON.stringify(watched));
   }
 
@@ -116,7 +118,9 @@ function App() {
   }
 
   function handleDeleteToWatch(id) {
-    setToWatch((toWatch) => toWatch.filter((movie) => movie.imdbID !== id))
+    setToWatch((toWatch) =>
+      toWatch.filter((movieToWatch) => movieToWatch.imdbID !== id),
+    )
   }
 
   function handleWatchedList() {
@@ -137,18 +141,21 @@ function App() {
               my<span>Popcorn</span>
             </h1>
             <Search query={query} setQuery={setQuery} />
-            <Button
-              type="primary"
-              text="my list"
-              buttonIcon=""
-              clickAction={handleWatchedList}
-            />
-            <Button
-              type="primary"
-              text="to watch"
-              buttonIcon=""
-              clickAction={handleToWatchList}
-            />
+            <div className="list-buttons flex flex-row gap-4 pt-2 border-t-2 mt-4 border-white/25">
+              <Button
+                type="rounded"
+                text="watched"
+                // buttonIcon=""
+                clickAction={handleWatchedList}
+                buttonIcon={<TiInputChecked />}
+              />
+              <Button
+                type="rounded"
+                text="to watch"
+                buttonIcon={<RiMovie2Fill />}
+                clickAction={handleToWatchList}
+              />
+            </div>
           </ActionPanel>
           <ResultsModule>
             {isLoading ? (
@@ -171,11 +178,12 @@ function App() {
                 toWatchModalOpen={toWatchModalOpen}
                 setToWatchModalOpen={setToWatchModalOpen}
                 onDeleteToWatch={handleDeleteToWatch}
+                onClickMovie={handleSelectMovie}
               />
             )}
           </ResultsModule>
           {selectedId && (
-            <SpringModal2
+            <MovieDetailsModal
               isOpen={isOpen}
               setIsOpen={setIsOpen}
               isLoading={isLoading}

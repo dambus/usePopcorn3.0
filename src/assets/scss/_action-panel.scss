@@ -39,7 +39,7 @@
   .search-input {
     background-color: transparent;
     outline: none;
-    border: 1px solid $color-brand-secondary;
+    border: 2px solid tint($color-brand-secondary, 33%);
     padding: 0.33rem;
     border-radius: 12px;
     @include md {

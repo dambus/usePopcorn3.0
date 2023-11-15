@@ -1,14 +1,21 @@
 // import Movie from './Movie'
-import ToWatchMovie from './WatchedMovie'
+import ToWatchMovie from './ToWatchMovie'
 
-function ToWatchList({ toWatch, onDeleteToWatch }) {
+function ToWatchList({
+  toWatch,
+  onDeleteToWatch,
+  onClickMovie,
+  setToWatchModalOpen,
+}) {
   return (
     <div className="">
-      {toWatch.map((movie) => (
+      {toWatch.map((movieToWatch) => (
         <ToWatchMovie
-          movie={movie}
-          key={movie.imdbID}
+          movie={movieToWatch}
+          key={movieToWatch.imdbID}
           onDeleteToWatch={onDeleteToWatch}
+          onClickMovie={onClickMovie}
+          setToWatchModalOpen={setToWatchModalOpen}
         />
       ))}
     </div>
