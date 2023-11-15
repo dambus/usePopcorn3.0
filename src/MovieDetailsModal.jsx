@@ -106,7 +106,7 @@ const MovieDetailsModal = ({
             animate={{ scale: 1, rotate: '0deg' }}
             exit={{ scale: 0, rotate: '0deg' }}
             onClick={(e) => e.stopPropagation()}
-            className="bg-gradient-to-br from-violet-600 to-indigo-600 text-white p-6 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-auto max-h-[82.5vh] md:max-h-[90vh]"
+            className="bg-gradient-to-br from-violet-600 to-indigo-600 text-white p-4 rounded-lg w-full max-w-lg shadow-xl cursor-default relative overflow-auto max-h-[80vh] md:max-h-[90vh]"
           >
             {/* background image */}
             <RiMovie2Fill className="text-white/10 rotate-12 text-[250px] absolute z-0 -top-24 -left-24" />
